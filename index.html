@@ -22,6 +22,9 @@
     <div class="form-group">
       <button id="btn-get-token" class="btn btn-secondary">Получить токен</button>
     </div>
+    <div class="form-group">
+      <button id="addWidgetBtn" class="btn btn-secondary">Добавить виджет в сообщество</button>
+    </div>
 
     <div class="alert alert-warning" id="el-output" role="alert"></div>
   </div>
@@ -113,6 +116,28 @@
       })
       ;
     });
+
+
+    document.getElementById('addWidgetBtn').addEventListener('click', () => {
+      // Вызываем метод VK Bridge для отображения окна установки виджета
+      иridge.send("VKWebAppShowCommunityWidgetPreviewBox", {
+        "type": "table", // Тип виджета (может быть text, list, table, tiles, cover_list)
+        "code": `return {
+          "title": "Привет, подписчики!",
+          "text": "Это текст нашего нового виджета, установленного прямо из мини-приложения."
+        };` // Код виджета на языке VKScript, который возвращает JSON структуру
+      })
+      .then(data => {
+        // Выполняется, если пользователь успешно нажал кнопку "Установить виджет" в окне VK
+        console.log("Виджет успешно добавлен!", data);
+        alert("Виджет успешно добавлен в ваше сообщество!");
+      })
+      .catch(error => {
+        // Выполняется, если произошла ошибка или пользователь закрыл окно
+        console.error("Ошибка при установке виджета:", error);
+        alert("Не удалось добавить виджет. Проверьте, являетесь ли вы администратором сообщества.");
+    });
+    
   </script>
   
 </body>
