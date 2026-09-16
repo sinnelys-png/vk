@@ -119,13 +119,7 @@
 
       document.getElementById('addWidgetBtn').addEventListener('click', () => {
       // Вызываем метод VK Bridge для отображения окна установки виджета
-      bridge.send("VKWebAppAddToCommunity", {
-        "type": "text", // Тип виджета (может быть text, list, table, tiles, cover_list)
-        "code": `return {
-          "title": "Привет, подписчики!",
-          "text": "Это текст нашего нового виджета, установленного прямо из мини-приложения."
-        };` // Код виджета на языке VKScript, который возвращает JSON структуру
-      })
+      bridge.send("VKWebAppAddToCommunity")
       .then(data => {
         // Выполняется, если пользователь успешно нажал кнопку "Установить виджет" в окне VK
         console.log("Виджет успешно добавлен!", data);
