@@ -120,7 +120,7 @@
       document.getElementById('addWidgetBtn').addEventListener('click', () => {
       // Вызываем метод VK Bridge для отображения окна установки виджета
       bridge.send("VKWebAppShowCommunityWidgetPreviewBox", {
-        "type": "table", // Тип виджета (может быть text, list, table, tiles, cover_list)
+        "type": "text", // Тип виджета (может быть text, list, table, tiles, cover_list)
         "code": `return {
           "title": "Привет, подписчики!",
           "text": "Это текст нашего нового виджета, установленного прямо из мини-приложения."
